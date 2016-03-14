@@ -13,6 +13,8 @@ if [ $1 ] && [ $2 ]; then
       echo Issuing Command: \`$cmd $cme $cmf\'
       eval $cmd $cme $cmf
 else
-    echo 'Usage: ./this <dir1> <dir2>'
+    echo 'Usage: ./this <dir1> <dir2> [opts]'
+    echo ' -u'
+    echo '  unified diff, rather than split into columns'
 fi
 
