@@ -11,7 +11,8 @@ if [ $1 ] && [ $2 ]; then
 
       cmf=" $1 $2 | grep -vE '^Only|^---|^\+\+\+|@@\s' |  sed 's/^diff.* /\nFILE: /g'"
       echo Issuing Command: \`$cmd $cme $cmf\'
-      eval $cmd $cme $cmf
+      eval $cmd $cme $cmf | GREP_COLOR="0;32" egrep --color=always '^<.*|^\+.*|$' \
+        | GREP_COLOR="0;31" egrep --color=always '^>.*|^\-.*|$'
 else
     echo 'Usage: ./this <dir1> <dir2> [opts]'
     echo ' -u'
