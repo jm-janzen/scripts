@@ -5,6 +5,8 @@ if [[ $1 == *"-h"* ]]; then
     echo 'Usage: ./this <dir1> <dir2> [opts]'
     echo ' -u'
     echo '  unified diff, rather than split into columns'
+    echo ' -h'
+    echo '  display this usage text'
     exit 0
 elif [ -z $1 ] || [ -z $2 ]; then
     here=${HOME}
