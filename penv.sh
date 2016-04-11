@@ -3,7 +3,7 @@
 
 # BUG:  Values that contain the delimeter `=' are cut off prematurely.
 
-printenv | awk -F'=' 'BEGIN {
+printenv | gawk -F'=' 'BEGIN {
     print "VARIABLE                      | VALUE";
     print "------------------------------------";
 }
@@ -13,12 +13,18 @@ printenv | awk -F'=' 'BEGIN {
     fieldlen = length($1);
     tablen   = baselen - fieldlen;
 
-    printf $1
+    if (NR % 2)
+        printf "\033[1;32m " $1
+    else
+        printf " " $1
 
     for (i = 0; i < tablen; i++)
         printf " "
 
-    printf "| " $2 "\n"
+    if (NR % 2)
+        printf "| " $2 "\033[0m\n"
+    else
+        printf "| " $s "\n"
 }
 END {
     print "------------------------------------";
