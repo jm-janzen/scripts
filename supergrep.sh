@@ -18,5 +18,5 @@ else
   echo ' -a'
   echo '  show Makefile*, /b/ matches as well'
   echo ' -u'
-  echo '  lol'
+  echo '  lul'
 fi
