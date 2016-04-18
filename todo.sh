@@ -6,7 +6,7 @@ egrep -Rn --binary-file=without-match \
     --exclude-dir=.git $1 \
     --exclude-dir=.npm \
     --exclude-dir=node_modules \
-    | awk '
+    | awk -F':' '
     BEGIN {
         todo = 0;
         xxx  = 0;
