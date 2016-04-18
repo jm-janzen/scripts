@@ -3,7 +3,7 @@
 # scan files for patterns "XXX, TODO, WIP"
 
 egrep -Rn --binary-file=without-match \
-    --exclude-dir=.git $1 \
+    --exclude-dir=.git . \
     --exclude-dir=.npm \
     --exclude-dir=node_modules \
     | awk -F':' '
