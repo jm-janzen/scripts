@@ -23,4 +23,4 @@ egrep -Rn --binary-file=without-match \
     } END {
         printf("TODO:%d, XXX:%d, WIP:%d\n", todo, xxx, wip);
     }' \
-    | less -R
+    | less -R --quit-if-one-screen
