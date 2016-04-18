@@ -11,15 +11,19 @@ egrep -Rn --binary-file=without-match \
         todo = 0;
         xxx  = 0;
         wip  = 0;
-    }/TODO/{
-        todo++
-        print $0
-    }/XXX/{
-        xxx++
-        print $0
-    }/WIP/{
-        wip++
-        print $0
+    }{
+        if ($3 ~ /TODO/) {
+            todo++
+            print $1 ":" $3
+        }
+        if ($3 ~ /XXX/) {
+            xxx++
+            print $1 ":" $3
+        }
+        if ($3 ~ /WIP/) {
+            wip++
+            print $1 ":" $3
+        }
     } END {
         printf("TODO:%d, XXX:%d, WIP:%d\n", todo, xxx, wip);
     }' \
