@@ -1,7 +1,7 @@
 #!/bin/sh -e
 # Format output of alias print dump into more readable format
 
-alias | awk -F'=' 'BEGIN {
+cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         print "ALIAS                         | COMMAND";
         print "---------------------------------------";
     }
