@@ -18,7 +18,10 @@ fi
 
 cmd="diff --suppress-blank-empty --suppress-common-lines --ignore-all-space"
 
-if [[ $3 == *"-u"* ]]; then
+# if normal format specified, use it, else use git-style unified format
+if [[ $@ == *"-n"* ]] || [[ $@ == *"--normal"* ]]; then
+    cme=" --normal"
+else
     cme=" --unified=0"
 fi
 
