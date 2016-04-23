@@ -21,8 +21,8 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         aliasLen = length($1);
         cmdLen   = length($2);
 
-        tab1len   = col1Len - aliasLen;
-        tab2len   = col2Len - cmdLen;
+        tab1len  = col1Len - aliasLen;
+        tab2len  = col2Len - cmdLen;
 
         printf " " $1 " "
 
