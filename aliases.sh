@@ -37,6 +37,4 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
 
 cat TEMP.AWK | grep --color -e '[#].*'
 
-
-
 rm TEMP.AWK
