@@ -1,6 +1,12 @@
 #!/bin/sh -e
 # Format output of alias print dump into more readable format
 
+if [ -f "TEMP.AWK" ]; then
+    echo "Somehow 'TEMP.AWK' already exists"
+    exit 1
+fi
+
+
 cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         print "ALIAS                         | COMMAND";
         print "---------------------------------------";
