@@ -18,14 +18,12 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         tab1len   = col1Len - aliasLen;
         tab2len   = col2Len - cmdLen;
 
-        printf " " $1
+        printf " " $1 " "
 
-        printf " "
         for (i = 0; i < tab1len; i++)
             printf "-"
-        printf " "
 
-        print $2
+        print " " $2
 
     } END {
         print "---------------------------------------";
