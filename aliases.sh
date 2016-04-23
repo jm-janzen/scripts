@@ -6,6 +6,10 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         print "---------------------------------------";
     }
     {
+        # TODO
+        #   Specify length for both columns ($1, $2)
+        #
+
         baselen  = 10;
         fieldlen = length($1);
         tablen   = baselen - fieldlen;
