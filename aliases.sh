@@ -15,7 +15,9 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         for (i = 0; i < tablen; i++)
             printf " "
 
-        printf "| " $s "\n"
+        printf "     |     " \
+            "\t" $2 \
+            "\n"
     }
     END {
         print "---------------------------------------";
