@@ -7,11 +7,11 @@ if [ -f "TEMP.AWK" ]; then
 fi
 
 
-cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
+awk -F= 'BEGIN {
         print "ALIAS                  | COMMAND";
         print "--------------------------------";
     }
-    {
+    /^alias/ {
 
         # replace all multi-spaces with a single space
         gsub(/\s+/, " ", $0);
@@ -32,8 +32,5 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
 
     } END {
         print "--------------------------------";
-    }' > TEMP.AWK
+    }' < "$HOME/.zshrc" | grep --color '#.*\|$'
 
-cat TEMP.AWK | grep --color -e '[#].*\|$'
-
-rm TEMP.AWK
