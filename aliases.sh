@@ -8,8 +8,8 @@ fi
 
 
 cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
-        print "ALIAS                         | COMMAND";
-        print "---------------------------------------";
+        print "ALIAS                  | COMMAND";
+        print "--------------------------------";
     }
     {
 
@@ -28,7 +28,7 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         print " " $2
 
     } END {
-        print "---------------------------------------";
+        print "--------------------------------";
     }' > TEMP.AWK
 
 cat TEMP.AWK | grep --color -e '[#].*\|$'
