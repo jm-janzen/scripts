@@ -10,13 +10,13 @@ awk -F= 'BEGIN {
         # replace all multi-spaces with a single space
         gsub(/\s+/, " ", $0);
 
-        col1Len  = 20;
+        colLen   = 20;
         aliasLen = length($1);
-        tab1len  = col1Len - aliasLen;
+        tablen   = colLen - aliasLen;
 
         printf " " $1 " "
 
-        for (i = 0; i < tab1len; i++)
+        for (i = 0; i < tablen; i++)
             printf "-"
 
         # TODO check if command ends in \
