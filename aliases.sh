@@ -10,9 +10,7 @@ awk -F= 'BEGIN {
         # replace all multi-spaces with a single space
         gsub(/\s+/, " ", $0);
 
-        colLen   = 20;
-        aliasLen = length($1);
-        tablen   = colLen - aliasLen;
+        tablen   = 20 - length($1);
 
         printf " " $1 " "
 
