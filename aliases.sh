@@ -17,12 +17,8 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         gsub(/\s+/, " ", $0);
 
         col1Len  = 20;
-        col2Len  = 60;
         aliasLen = length($1);
-        cmdLen   = length($2);
-
         tab1len  = col1Len - aliasLen;
-        tab2len  = col2Len - cmdLen;
 
         printf " " $1 " "
 
