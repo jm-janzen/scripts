@@ -25,6 +25,9 @@ cat ${HOME}/.zshrc | grep -e '^alias' | awk -F'=' 'BEGIN {
         for (i = 0; i < tab1len; i++)
             printf "-"
 
+        # TODO check if command ends in \
+        # and indent + print continuation.
+
         print " " $2
 
     } END {
