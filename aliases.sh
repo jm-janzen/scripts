@@ -2,10 +2,11 @@
 # Format output of alias print dump into more readable format
 
 awk -F= 'BEGIN {
-        TABLE_FMT = "%-21s | %-60s";
+        TABLE_FMT = "%-21s | %-59s";
         row = sprintf(TABLE_FMT, "ALIAS", "COMMAND");
         print row;
-        print "--------------------------------";
+        gsub(".", "-", row);
+        print row;
     }
     /^alias/ {
 
@@ -25,6 +26,6 @@ awk -F= 'BEGIN {
         print " " $2
 
     } END {
-        print "--------------------------------";
+        print row;
     }' < "$HOME/.zshrc" | grep --color '#.*\|$'
 
