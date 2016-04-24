@@ -2,7 +2,9 @@
 # Format output of alias print dump into more readable format
 
 awk -F= 'BEGIN {
-        print "ALIAS                  | COMMAND";
+        TABLE_FMT = "%-21s | %-60s";
+        row = sprintf(TABLE_FMT, "ALIAS", "COMMAND");
+        print row;
         print "--------------------------------";
     }
     /^alias/ {
