@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# Format output of alias print dump into more readable format
+# Format output of aliases for z shell
 
 awk -F= 'BEGIN {
         TABLE_FMT = "%-21s | %-59s";
