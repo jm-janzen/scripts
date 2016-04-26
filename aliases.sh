@@ -17,5 +17,6 @@ awk -F= 'BEGIN {
 
     } END {
         print row;
-    }' < "$HOME/.zshrc" | grep --color '#.*\|$'
+    }
+' < "$HOME/.zshrc" | grep --color '#.*\|$'
 
