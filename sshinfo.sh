@@ -1,5 +1,18 @@
 #!/bin/sh -e
 
+#
+# Summary
+#   sshinfo.sh - $SSH_CONNECTION environment variable formatter
+#
+# Usage
+#   ./sshinfo.sh
+#
+# Description
+#   Check if $SSH_TTY is set, and unconditionally label and print
+#   IP address and port number information related to a Secure SHell
+#   session, regardless of status.
+#
+
 if [ ! -n $SSH_TTY ]; then
     echo "This script is only useful if you're connected via a Secure SHell"
 fi
