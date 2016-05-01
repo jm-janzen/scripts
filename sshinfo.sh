@@ -19,11 +19,13 @@ fi
 
 echo $SSH_CONNECTION | \
     awk '{
+        # Collect space-delimited values
         cli_ip=$1;
         cli_port=$2;
         srv_ip=$3;
         srv_port=$4;
 
+        # Prepare String format for output
         FMT="Client IP:\t%s\nClient Port:\t%s\n" \
         "Server IP:\t%s\nServer Port:\t%s\n"
 
