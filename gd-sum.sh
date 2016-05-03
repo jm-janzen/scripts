@@ -20,6 +20,11 @@ awk -f <(cat - <<-'EOD'
             sum = sum < 0 ? sum * -1 : sum;
         }
         END {
+            if (sum == "") {
+                printf "No changes in tracked files.\n"
+                exit 0
+            }
+
             printf files ":"
 
             if (red) {
