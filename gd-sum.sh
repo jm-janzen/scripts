@@ -1,11 +1,17 @@
 #!/bin/bash -e
-# Brief sum of additions minus deletions,
-# meant to indicate 'red' or 'green' commit
-# Output:
-#   f = files changed
-#   l = lines insert or deleted
-#   Format:
-#       f:l
+#
+# gd-sum.sh - brief sum of line additions and deletions in a git
+#
+# Usage
+#   ./gd-sum
+#
+# Description
+#   meant to indicate 'red' or 'green' commit
+#   Output:
+#     f = files changed
+#     l = lines insert or deleted
+#     Format:
+#         f:l
 
 git diff --shortstat | \
 awk -f <(cat - <<-'EOD'
