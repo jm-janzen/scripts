@@ -13,7 +13,7 @@
 #   session, regardless of status.
 #
 
-if [ ! -n $SSH_TTY ]; then
+if [ -n $SSH_TTY ]; then
     echo "This script is only useful if you're connected via a Secure SHell"
 fi
 
