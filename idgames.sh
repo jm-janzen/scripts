@@ -3,6 +3,9 @@
 #
 # idgames.sh - simple idgames API ping script
 #
+# Usage
+#   ./idgames.sh [db]ping
+#
 
 base='http://www.doomworld.com/idgames/api/api.php'
 json='&out=json'
@@ -10,12 +13,14 @@ action='?action='
 
 function ping ()
 {
-    curl -X GET "${base}${action}ping${json}";
+    uri="${base}${action}${1}${json}";
+    echo "Accessing $uri";
+    curl -X GET $uri;
 }
 
 case "$1" in
-    ping)
-        ping
+    ping|dbping)
+        ping $1
         ;;
     *)
         echo "Command \"${1}\" not recognized"
