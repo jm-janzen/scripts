@@ -3,7 +3,7 @@
 var request = require('request');
 
 var opts = {
-    uri: 'https://api.github.com' + '/users/jm-janzen/events',
+    uri: 'https://api.github.com' + '/users/' + process.argv[2] + '/events',
     json: true,
     method: 'GET',
     headers: {
