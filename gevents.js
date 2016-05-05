@@ -11,6 +11,11 @@ var opts = {
     }
 }
 
+if (! process.argv[2]) {
+    console.log('Usage: nodejs gevents.js <user-name>');
+    process.exit(0);
+}
+
 request(opts, function (err, res, body) {
     if (err) throw new Error(err);
 
