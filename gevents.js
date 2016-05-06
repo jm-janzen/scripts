@@ -3,17 +3,12 @@
 var request = require('request');
 
 var opts = {
-    uri: 'https://api.github.com' + '/users/' + process.argv[2] + '/events',
+    uri: 'https://api.github.com' + '/users/' + parseParams(process.argv[2]) + '/events',
     json: true,
     method: 'GET',
     headers: {
         'User-Agent': 'nodejs script'
     }
-}
-
-if (! process.argv[2]) {
-    console.log('Usage: nodejs gevents.js <user-name>');
-    process.exit(0);
 }
 
 request(opts, function (err, res, body) {
@@ -33,3 +28,11 @@ request(opts, function (err, res, body) {
             , body[i].repo.name);
     }
 });
+
+function parseParams(params) {
+    if (! params) {
+        console.log('Usage: nodejs gevents.js <user-name>');
+        process.exit(0);
+    }
+    return params;
+}
