@@ -2,14 +2,7 @@
 
 var request = require('request');
 
-var opts = {
-    uri: 'https://api.github.com' + '/users/' + parseParams(process.argv[2]) + '/events',
-    json: true,
-    method: 'GET',
-    headers: {
-        'User-Agent': 'nodejs script'
-    }
-}
+var opts = parseOptions(process.argv[2]);
 
 request(opts, function (err, res, body) {
     if (err) throw new Error(err);
@@ -40,5 +33,29 @@ function parseParams(params) {
         console.log('Usage: nodejs gevents.js <user-name>');
         process.exit(0);
     }
+
     return params;
 }
+
+function parseOptions(opts) {
+
+    // org or users, resource, query topic
+    var who = '/users'
+      , where = '/' + opts
+      , what  = '/events'
+
+    var options = {
+        uri: 'https://api.github.com'
+          + who
+          + where
+          + what,
+        json: true,
+        method: 'GET',
+        headers: {
+            'User-Agent': 'nodejs script'
+        }
+    }
+
+    return options;
+}
+
