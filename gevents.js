@@ -22,6 +22,10 @@ request(opts, function (err, res, body) {
     var format = '[%s]: %s %s %s %s';
 
     for (var i = 0; i < body.length; i++) {
+        /*
+         * TODO return something like this as JSON
+         * for caller consumption (useful for servers).
+         */
         console.log(format
             , body[i].created_at
             , body[i].type
