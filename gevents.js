@@ -29,6 +29,12 @@ request(opts, function (err, res, body) {
     }
 });
 
+/*
+ * Verify param is present, and just return it.
+ * TODO
+ *   Check for multiple params, and check validity
+ *   as well as presence.
+ */
 function parseParams(params) {
     if (! params) {
         console.log('Usage: nodejs gevents.js <user-name>');
