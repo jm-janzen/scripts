@@ -53,10 +53,6 @@ function sendRequest(opts, callback) {
         if (error) throw new Error(error);
 
         for (var i = 0; i < body.length; i++) {
-            /*
-            * TODO return something like this as JSON
-            * for caller consumption (useful for servers).
-            */
             bod.push([ body[i].created_at
             , body[i].type
             , body[i].actor.login
