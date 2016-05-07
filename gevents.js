@@ -7,7 +7,7 @@ var opts = parseOptions(process.argv[2]);
 request(opts, function (err, res, body) {
     if (err) throw new Error(err);
 
-    var format = '[%s]: %s %s %s %s';
+    var format = '[%s]: %s %s %s';
 
     for (var i = 0; i < body.length; i++) {
         /*
