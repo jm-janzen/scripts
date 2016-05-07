@@ -3,23 +3,8 @@
 var request = require('request');
 
 var opts = parseOptions(process.argv[2]);
-
-request(opts, function (err, res, body) {
-    if (err) throw new Error(err);
-
-    var format = '[%s]: %s %s %s';
-
-    for (var i = 0; i < body.length; i++) {
-        /*
-         * TODO return something like this as JSON
-         * for caller consumption (useful for servers).
-         */
-        console.log(format
-            , body[i].created_at
-            , body[i].type
-            , body[i].actor.login
-            , body[i].repo.name);
-    }
+sendRequest(opts, function (out) {
+    console.log(out)
 });
 
 /*
@@ -57,5 +42,29 @@ function parseOptions(opts) {
     }
 
     return options;
+}
+
+function sendRequest(opts, callback) {
+
+    var format = '[%s]: %s %s %s';
+    var bod    = [];
+
+    request(opts, function (error, res, body) {
+        if (error) throw new Error(error);
+
+        for (var i = 0; i < body.length; i++) {
+            /*
+            * TODO return something like this as JSON
+            * for caller consumption (useful for servers).
+            */
+            bod.push([ body[i].created_at
+            , body[i].type
+            , body[i].actor.login
+            , body[i].repo.name]);
+        }
+
+        callback(bod);
+
+    });
 }
 
