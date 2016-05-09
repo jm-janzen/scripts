@@ -1,6 +1,19 @@
 #!/bin/bash
 
-# scan files for patterns "XXX, TODO, WIP"
+#
+# Summary
+#   todo.sh - scan files for signs of incomplete work
+#
+# Description
+#   Look for patterns which match `TODO', `XXX', or `WIP',
+#   and display snippets of the lines that contain these
+#   patterns.
+#   Once completed scanning all files, display summary (count)
+#   of each pattern.
+#
+# Usage
+#   ./todo.sh
+#
 
 egrep -Rn --binary-file=without-match \
     --exclude-dir=.git . \
