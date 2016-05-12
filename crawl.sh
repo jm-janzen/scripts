@@ -20,7 +20,11 @@ else
     log_file=`find . -iname '*.log' -print -quit`
 fi
 
-conn_ip=$(echo $SSH_CLIENT | awk '{ print $1 }')
+if [[ $@ != *"-A"* ]]; then
+    conn_ip=$(echo $SSH_CLIENT | awk '{ print $1 }')
+else
+    conn_ip='//'
+fi
 
 printf "Following log file %s, ignoring %s\n" $log_file $conn_ip
 
