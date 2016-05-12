@@ -26,6 +26,6 @@ else
     conn_ip='//'
 fi
 
-printf "Following log file %s, ignoring %s\n" $log_file $conn_ip
+printf "\n==> Following log file %s, ignoring %s <==\n\n" $log_file $conn_ip
 
 tail -f ${log_file} | grep -v ${conn_ip}
