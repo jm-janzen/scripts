@@ -74,11 +74,14 @@ elif [[ $# -eq 1 ]] && [[ $1 == *"-A"* ]]; then     # One parm:  Find *.log, dis
 elif [[ $# -eq 1 ]] && [[ $1 == *".log" ]]; then    # One parm:  Follow specific .log file
     findLogFile $1
     ignore
-elif [[ $# -eq 2 ]] &&                              # Two parms: Ignore specific pattern
+elif [[ $# -ge 2 ]] &&                              # Two parms: Ignore specific pattern
   [[ $1 == *"-I"* ]]; then
-    echo "ignoring $2" #XXX
+    if [[ $# -eq 3 ]]; then                         # Three parms: Ignore specific pattern of specific file
+        findLogFile $3
+    else
+        findLogFile
+    fi
     ignore $2
-    findLogFile
 else
     usage 'Invalid arguments'
 fi
