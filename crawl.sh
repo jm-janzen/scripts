@@ -18,6 +18,7 @@ if [[ -f $1 ]]; then
 else
     # If multiple log files, just use first found
     log_file=`find . -iname '*.log' -print -quit`
+    # TODO if no file found, exit with message
 fi
 
 if [[ $@ != *"-A"* ]]; then
