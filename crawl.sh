@@ -47,7 +47,20 @@ function findLogFile {
 # to use this script.
 function usage {
     echo $1
-    exit
+    cat << EOF
+Usage: crawl.sh [OPTION] [FILE]
+
+    [OPTION]:
+        -A
+            Show all.
+        -I <pattern>
+            Ignore specified pattern.
+
+    [FILE]:
+        Follow file matching the pattern \`*.log'. If unspecified,
+        crawl.sh will use the first file it find matching this pattern.
+EOF
+    exit 1
 }
 
 # Check for number of
