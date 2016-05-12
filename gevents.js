@@ -4,7 +4,9 @@ var request = require('request');
 
 var opts = parseOptions(process.argv[2]);
 sendRequest(opts, function (out) {
-    console.log(out)
+    out.forEach(function (v, i, a) {
+        console.log('%s\n  %s', a[i][1], a[i][3]);
+    });
 });
 
 /*
