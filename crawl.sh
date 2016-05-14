@@ -55,6 +55,7 @@ Usage: crawl.sh [OPTION] [FILE]
             Show all.
         -I <pattern>
             Ignore specified pattern.
+            To ignore multiple patterns use 'pat1\\|pat2'
         -h  Display this Usage Help.
 
     [FILE]:
