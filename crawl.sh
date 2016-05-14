@@ -58,7 +58,7 @@ Usage: crawl.sh [OPTION] [FILE]
 
     [FILE]:
         Follow file matching the pattern \`*.log'. If unspecified,
-        crawl.sh will use the first file it find matching this pattern.
+        crawl.sh will use the first file it finds matching this pattern.
 EOF
     exit 1
 }
