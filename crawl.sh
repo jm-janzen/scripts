@@ -55,6 +55,7 @@ Usage: crawl.sh [OPTION] [FILE]
             Show all.
         -I <pattern>
             Ignore specified pattern.
+        -h  Display this Usage Help.
 
     [FILE]:
         Follow file matching the pattern \`*.log'. If unspecified,
