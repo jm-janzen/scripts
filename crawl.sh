@@ -68,18 +68,17 @@ EOF
 if [[ $# -eq 0 ]]; then                             # No parms:  Find *.log, ignore connecting IP
     findLogFile
     ignore
-elif [[ $# -eq 1 ]]; then                           # One parm:  Find *.log, display connecting IP
+elif [[ $# -eq 1 ]]; then                           # One parm:
 
-    if [[ $1 =~ "-h" ]]; then                       # Or display Usage Help
+    if [[ $1 =~ "-h" ]]; then                       #   Display Usage Help
         usage 'Help'
-    elif [[ $1 == *"-A"* ]]; then                   # Or don't ignore connecting IP
+    elif [[ $1 == *"-A"* ]]; then                   #   Don't ignore connecting IP
         findLogFile
         all $1
+    elif [[ $1 == *".log" ]]; then                  #   Follow specific .log file
+        findLogFile $1
+        ignore
     fi
-
-elif [[ $# -eq 1 ]] && [[ $1 == *".log" ]]; then    # One parm:  Follow specific .log file
-    findLogFile $1
-    ignore
 elif [[ $# -ge 2 ]] &&                              # Two parms: Ignore specific pattern
   [[ $1 == *"-I"* ]]; then
     if [[ $# -eq 3 ]]; then                         # Three parms: Ignore specific pattern of specific file
