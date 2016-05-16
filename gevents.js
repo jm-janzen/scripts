@@ -1,8 +1,14 @@
 'use strict';
 
+try {
+    var opts = parseOptions(process.argv[2]);
+} catch (e) {
+    console.error('Must enter a user name to query!');
+    process.exit(1);
+}
+
 var request = require('request');
 
-var opts = parseOptions(process.argv[2]);
 sendRequest(opts, function (out) {
     out.forEach(function (v, i, a) {
         console.log('%s\n  %s', a[i][1], a[i][3]);
@@ -25,6 +31,7 @@ function parseParams(params) {
 }
 
 function parseOptions(opts) {
+    if (! opts) throw new Error('No options provided');
 
     // org or users, resource, query topic
     var who = '/users'
