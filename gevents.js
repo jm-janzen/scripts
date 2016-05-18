@@ -1,3 +1,5 @@
+#!/usr/bin/nodejs
+
 'use strict';
 
 try {
