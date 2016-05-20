@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # convenience script for GNU find package
 
 if [ $1 ]; then

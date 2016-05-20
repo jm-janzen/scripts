@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # convenience script to grep a particular dir for a particular pattern;
 # excludes build dirs and Makefiles by default
 

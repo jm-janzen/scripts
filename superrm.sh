@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # convenience script to show summary of a directory before prompting to delete it
 
 if [ $1 ]; then
