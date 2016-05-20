@@ -1,6 +1,7 @@
 #!/bin/bash -e
-#
-# gd-sum.sh - brief sum of line additions and deletions in a git
+
+# Summary
+#   gd-sum.sh - brief sum of line additions and deletions in a git
 #
 # Usage
 #   ./gd-sum
