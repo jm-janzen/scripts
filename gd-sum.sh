@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
+#
 # Summary
 #   gd-sum.sh - brief sum of line additions and deletions in a git
 #
@@ -13,6 +14,7 @@
 #     l = lines insert or deleted
 #     Format:
 #         f:l
+#
 
 git diff --shortstat | \
 awk -f <(cat - <<-'EOD'
