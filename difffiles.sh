@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # highlight differences between common files in two given directories
 
 if [[ $1 == *"-h"* ]]; then
