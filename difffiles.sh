@@ -1,5 +1,17 @@
 #!/bin/bash -e
-# highlight differences between common files in two given directories
+
+#
+# Summary
+#   difffiles.sh - highlight differences between common files in two given directories.
+#
+# Usage
+#   ./difffiles.sh dir_a/ dir_b/
+#
+# Description
+#   If `-n' or `--normal' specified in opts, will show normal diff format, otherwise
+#   use unified (or git style) diff output.  In either case, colour the output red
+#   and green, for additions and deletions, respectively.
+#
 
 if [[ $1 == *"-h"* ]]; then
     echo 'Usage: ./this <dir1> <dir2> [opts]'
