@@ -1,7 +1,17 @@
 #!/bin/sh -e
-# Format output of printenv for legibility
 
-# BUG:  Values that contain the delimeter `=' are cut off prematurely.
+#
+# Summary
+#   penv.sh - format output of core utility printenv for legibility.
+#
+# Usage
+#   ./penv.sh
+#
+# BUGS
+#   *   Values that contain the delimeter `=' are cut off prematurely.
+#   *   LS_COLORS variable is very long in some environments (eg. when
+#       using GNU screen).
+#
 
 printenv | gawk -F'=' 'BEGIN {
     print "VARIABLE                      | VALUE";
