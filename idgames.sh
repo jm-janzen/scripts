@@ -18,9 +18,20 @@ function ping ()
     curl -X GET $uri;
 }
 
+function getid ()
+{
+    action="${action}get"
+    uri="${base}${action}&id=${1}${json}";
+    echo "Accessing $uri";
+    curl -X GET $uri;
+}
+
 case "$1" in
     ping|dbping)
         ping $1
+        ;;
+    id)
+        getid $2
         ;;
     *)
         echo "Command \"${1}\" not recognized"
