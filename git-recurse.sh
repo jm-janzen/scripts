@@ -11,6 +11,10 @@ git_dirs=$(find ${HOME} -name '.git')
 for dir in $git_dirs; do
     dir=${dir%.git}
 
+    if [[ $@ == *"-l"* ]]; then
+        echo $dir
+    fi
+
     # XXX Returns single line, with variable spacing
     branches=$(git -C $dir branch 2> /dev/null) || continue
 
