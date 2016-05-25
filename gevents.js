@@ -13,7 +13,10 @@ var request = require('request');
 
 sendRequest(opts, function (out) {
     out.forEach(function (v, i, a) {
-        console.log('%s\n  %s', a[i][1], a[i][3]);
+        console.log('%s on %s\n  %s'
+          , a[i][1]
+          , new Date(a[i][0])
+          , a[i][3]);
     });
 });
 
