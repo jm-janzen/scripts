@@ -11,7 +11,7 @@ git_dirs=$(find ${HOME} -name '.git')
 for dir in $git_dirs; do
     dir=${dir%.git}
 
-    if [[ $@ == *"-l"* ]] || [[ $@ == "--list" ]]; then
+    if [[ $@ == "-l" ]] || [[ $@ == "--list" ]]; then
         echo $dir
     fi
 
