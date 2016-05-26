@@ -15,6 +15,10 @@ for dir in $git_dirs; do
         echo $dir
     fi
 
+    if [[ $@ == "-u" ]] || [[ $@ == "--update" ]]; then
+        $(git -C $dir remote -v update) || continue
+    fi
+
     # XXX Returns single line, with variable spacing
     branches=$(git -C $dir show-branch --list 2> /dev/null) || continue
 
