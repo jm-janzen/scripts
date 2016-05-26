@@ -16,7 +16,7 @@ for dir in $git_dirs; do
     fi
 
     # XXX Returns single line, with variable spacing
-    branches=$(git -C $dir branch 2> /dev/null) || continue
+    branches=$(git -C $dir show-branch --list 2> /dev/null) || continue
 
     IFS=$'\n'
     for branch in "${branches}"; do
