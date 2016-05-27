@@ -19,11 +19,7 @@ for dir in $git_dirs; do
         $(git -C $dir remote -v update) || continue
     fi
 
-    # XXX Returns single line, with variable spacing
-    branches=$(git -C $dir show-branch --list 2> /dev/null) || continue
-
-    IFS=$'\n'
-    for branch in "${branches}"; do
+    for g in `git -C $dir ls-remote --heads 2> /dev/null`; do
         let ++git_branches
     done
 
