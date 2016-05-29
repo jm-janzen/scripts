@@ -19,6 +19,25 @@ for dir in $git_dirs; do
         $(git -C $dir remote -v update) || continue
     fi
 
+    if [[ $@ == "-d" ]] || [[ $@ == "--dirty" ]]; then
+        git=`git -C $dir status -s -b`
+        dir=`git -C $dir rev-parse --show-toplevel`
+        for g in $git; do
+            echo "$g" | awk -vdir="$dir" \
+                'staleFiles = 0;
+                 /^M$/ { staleFiles++; }
+                 /^A$/ { staleFiles++; }
+                 /^R$/ { staleFiles++; }
+                 /^D$/ { staleFiles++; }
+                 /^\?\?$/ { }
+                 END {
+                 if (staleFiles > 0)
+                     printf "Found %d out-of-date file(s) in %s\n", staleFiles, dir;
+
+                }'
+        done
+    fi
+
     for g in `git -C $dir ls-remote --heads 2> /dev/null`; do
         let ++git_branches
     done
