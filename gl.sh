@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+### TODO if no user specified, just list all users' contributions
+
 #
 # Summary
 #   gl.sh - summarize a particular user's contributions to a repository.
