@@ -1,6 +1,21 @@
 #!/bin/bash -e
 
-# look for directories which respond to `git branch' command.
+#
+# Summary
+#   git-recurse.sh - look for directories which respond to `git branch' command.
+#
+# Usage
+#   ./git-recurse.sh [-l] [-u] [-d]
+#
+# Description
+#   Still a WIP, but fundamentally used to gather information on git respositories,
+#   recursively, from the $HOME directory onward.
+#
+# TODO
+#   *   `-u' flag is not in keeping with this script's role as a recursive git querier,
+#       and should be spun off into a subscript.
+#   *   Add `-h' flag to display usage help text.
+#
 
 git_duplicates=0
 git_branches=0
