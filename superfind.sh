@@ -1,5 +1,11 @@
 #!/bin/bash -e
-# convenience script for GNU find package
+#
+# Summary
+#   superfind.sh - convenience script for GNU find package
+#
+# Usage
+#   ./superfind.sh <dir> <filename>
+#
 
 if [ $1 ]; then
   find $1 -iname $2 -printf '%p\n'

@@ -1,5 +1,23 @@
 #!/usr/bin/nodejs
 
+/*
+ *
+ * Summary
+ *  gevents.js - get publically available events given Github user
+ *
+ * Usage
+ *  ./gevents.js <user-name>
+ *
+ * Description
+ *  Using the Github API, query for user-events of a given user, and
+ *  sort by descending chronological order information pertaining to
+ *  the type of event, its exact date-time, and the exact repository
+ *  endpoint of the event.
+ *
+ */
+
+
+
 'use strict';
 
 try {
