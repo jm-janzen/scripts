@@ -93,6 +93,12 @@ else
     usage 'Invalid arguments'
 fi
 
+# Set output height to
+# maximum terminal height, minus 5
+height=$(tput lines || 10)
+height=$((${height}-5))
+
 printf "\n==> Following log file %s, ignoring %s <==\n\n" $log_file $conn_ip
 
-tail -f ${log_file} | grep -v ${conn_ip}
+tail --lines=${height} -f ${log_file} | grep -v ${conn_ip}
+
