@@ -1,5 +1,18 @@
 #!/bin/sh -e
-# Format output of aliases for z shell
+
+#
+# Summary
+#   aliases.sh - Format output of aliases for z shell
+#
+# Usage
+#   ./aliases.sh
+#
+# Description
+#   An excedingly simple script, that is by no means guaranteed
+#   to be reusable.  Reads the contents of `~/.zshrc' for alias
+#   declarations, and prints the output into columns, along with
+#   any associated comments (highlights with grep).
+#
 
 awk -F= 'BEGIN {
         TABLE_FMT = "%-21s | %-59s";
