@@ -7,3 +7,4 @@ if [ $1 ]; then
 else
     echo 'Usage: R <dir>'
 fi
+
