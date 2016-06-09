@@ -12,3 +12,4 @@ if [ $1 ]; then
 else
   echo 'Usage: ./this <dir> <filename>'
 fi
+
