@@ -1,6 +1,16 @@
 #!/bin/bash -e
-# convenience script to grep a particular dir for a particular pattern;
-# excludes build dirs and Makefiles by default
+
+#
+# Summary
+#   supergrep.sh - Convenience script to grep a particular dir for a particular pattern.
+#
+# Usage
+#   ./supergrep.sh <dir> <pattern> [-a] [-u]
+#
+# Description
+#   Excluding build directories, or Makefiles (unless `-a' flag set), recursive search
+#   for and print matching pattern to the standard out.
+#
 
 if [ $1 ] && [ $2 ]; then
   cd $1
@@ -20,3 +30,4 @@ else
   echo ' -u'
   echo '  lul'
 fi
+

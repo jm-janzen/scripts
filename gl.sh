@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 ### TODO if no user specified, just list all users' contributions
+### TODO list contributions by all users when none specified explicitly
 
 #
 # Summary
@@ -19,8 +20,21 @@
 #
 
 if [ $1 ]; then
-    git log --shortstat --author "$1" | grep "files\? changed" | awk '{f+=$1; i+=$4; d+=$6} END {print "files:", f, "green:", i, "red", d}'
+    user=$1;
+    git log --shortstat --author "$user" | grep "files\? changed" | awk '{f+=$1; i+=$4; d+=$6} END {print "files:", f, "green:", i, "red", d}'
 else
-    echo "Usage: ./this username"
-    exit
+    total=`git log --shortstat | awk '/Author: / { print; }' | wc -l` # total number of contributions by all users
+    #authors=`git log --shortstat | awk '/Author: / { print; }' | uniq -c | grep -oP '(Author: ).*'` # list of unique authors
+    authors=`git log --shortstat | awk '/Author: / { print; }' | uniq | sed -n -e 's/Author:\s//p'`
+
+    for a in $authors; do
+        if [[ $a =~ "<" ]]; then
+            echo OINK
+        else
+            echo $a
+        fi
+    done
 fi
+
+echo $total $users
+

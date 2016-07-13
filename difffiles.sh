@@ -43,3 +43,4 @@ cmf=" $here $there | grep -vE '^Only|^---|^\+\+\+|@@\s' |  sed 's/^diff.* /\nFIL
 echo Issuing Command: \`$cmd $cme $cmf\'
 eval $cmd $cme $cmf | GREP_COLOR="0;32" egrep --color=always '^<.*|^\+.*|$' \
   | GREP_COLOR="0;31" egrep --color=always '^>.*|^\-.*|$'
+
