@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Usage: ./gulp-tracer.sh [name]
+# Usage: sudo ./gulp-tracer.sh [name]
 
 function traceProc {
     echo "Running strace for $1"
