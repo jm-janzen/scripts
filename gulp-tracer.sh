@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-# Usage: sudo ./gulp-tracer.sh [name]
+#
+# Summary
+#   gulp-tracer.sh - trace io of gulp process (or other named process)
+#
+# Usage
+#   sudo ./gulp-tracer.sh [name]
+#
 
 function traceProc {
     echo "Running strace for $1"
