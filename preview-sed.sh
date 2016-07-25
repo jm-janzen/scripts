@@ -26,7 +26,7 @@ if [[ -d $1 ]]; then
     if [[ -d "${backup_files}" ]]; then
         pass=0;
 
-        while 
+        while
             printf "Delete backup \`${backup_files}' [yn]? "
             read answer
 
