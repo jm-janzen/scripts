@@ -21,6 +21,7 @@
 
 backup_dir="${HOME}/.preview-sed.sh.dir/" || exit 1
 backup_files="${backup_dir}${1}"
+sed_pat=//
 
 aargs=($*)
 
@@ -44,6 +45,9 @@ function parse_args {
     # check args len
     if [[ $# -lt 3 ]]; then
         usage 'Insufficient arguments.'
+    else
+        sed_pat="'s/$2/$3/g'"
+        echo "$sed_pat"
     fi
 }
 
@@ -82,11 +86,17 @@ function backup_files {
     fi
 }
 
+function sed_files {
+    echo "Running \` grep -rl --null $2 ${backup_files} | xargs -0 sed -e ${sed_pat} ${backup_files}'"
+}
+
 ###
 ### main
 ###
 
 parse_args $*
 backup_files $*
+sed_files
+
 
 exit 0
