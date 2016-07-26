@@ -22,36 +22,71 @@
 backup_dir="${HOME}/.preview-sed.sh.dir/" || exit 1
 backup_files="${backup_dir}${1}"
 
-if [[ -d $1 ]]; then
-    if [[ -d "${backup_files}" ]]; then
-        pass=0;
+aargs=($*)
 
-        while
-            printf "Delete backup \`${backup_files}' [yn]? "
-            read answer
+function usage {
+    echo $1
+    cat << EOF
+    Usage: ./preview-sed.sh -[h] <dir> <pattern> <replace>
+EOF
+    exit 1
+}
 
-            case "$answer" in
-                y)
-                    pass=1
-                    rm -r "${backup_files}" ;;
-                n|*)
-                    exit 0
-                    ;;
-            esac
+# TODO check for invalid args and quit
+function parse_args {
+    # check for help flag
+    for i in "${!aargs[@]}"; do
+        if [[ ${aargs[i]} == '-h' ]]; then
+            usage 'Help.'
+        fi
+    done
 
-            (( $pass == 0 )) 
-        do 
-            continue
-
-        done
-
+    # check args len
+    if [[ $# -lt 3 ]]; then
+        usage 'Insufficient arguments.'
     fi
-    printf "Making a backup of $1 ... "
-    mkdir -p $backup_dir
-    cp -a $1 "${backup_dir}/${1}"
-    printf "Success.\n"
-else
-    echo "First arg needs to be a directory"
-fi
+}
+
+function backup_files {
+
+    if [[ -d $1 ]]; then
+        if [[ -d "${backup_files}" ]]; then
+            pass=0;
+
+            while
+                printf "Delete backup \`${backup_files}' [yn]? "
+                read answer
+
+                case "$answer" in
+                    y)
+                        pass=1
+                        rm -r "${backup_files}" ;;
+                    n|*)
+                        exit 0
+                        ;;
+                esac
+
+                (( $pass == 0 ))
+            do
+                continue
+
+            done
+
+        fi
+        printf "Making a backup of $1 ... "
+        mkdir -p $backup_dir
+        cp -a $1 "${backup_dir}/${1}"
+        printf "Success.\n"
+    else
+        echo "First arg needs to be a directory"
+    fi
+}
+
+###
+### main
+###
+
+parse_args $*
+backup_files $*
 
 exit 0
