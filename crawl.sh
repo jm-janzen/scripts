@@ -5,7 +5,7 @@
 #   crawl.sh - log file follower, filterer.
 #
 # Usage
-#   ./crawl.sh [file]
+#   ./crawl.sh [OPTION] [FILE]
 #
 # Description
 #   Follow updates on a connection-type log file,
@@ -20,7 +20,7 @@ function all {
 }
 
 # Check for `-I' flag, and
-# presense of associated value.
+# presence of associated value.
 function ignore {
     if [[ $1 ]]; then
         conn_ip=$1
