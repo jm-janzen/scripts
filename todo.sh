@@ -26,6 +26,10 @@ egrep -Rn --binary-file=without-match \
         wip  = 0;
         print("===")
     }{
+        # Skip this script
+        if ($1 ~ /todo\.sh/) {
+            next
+        }
         if ($3 ~ /TODO/) {
             todo++
             print $1 ":" $3
