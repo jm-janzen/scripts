@@ -34,7 +34,7 @@ egrep -Rn --binary-file=without-match \
             todo++
             print
         }
-        if ($3 ~ /XXX/) {
+        if ($3 ~ /XXX|FIXME/) {
             xxx++
             print
         }
