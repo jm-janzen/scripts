@@ -32,15 +32,15 @@ egrep -Rn --binary-file=without-match \
         }
         if ($3 ~ /TODO/) {
             todo++
-            print $1 ":" $3
+            print
         }
         if ($3 ~ /XXX/) {
             xxx++
-            print $1 ":" $3
+            print
         }
         if ($3 ~ /WIP/) {
             wip++
-            print $1 ":" $3
+            print
         }
     } END {
         print("===")
