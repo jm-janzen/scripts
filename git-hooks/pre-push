@@ -1,0 +1,7 @@
+#!/bin/sh
+
+git log --patch --abbrev-commit --pretty=short -- . ":(exclude)*"{.ejs,.svg} | head -n 1000 > views/gitlog.txt
+
+printf '\e[5:31m%-6s\e[m' "GIT LOG HAS GONE LIVE!" && echo '  see: views/gitlog.txt'
+
+
