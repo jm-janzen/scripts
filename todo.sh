@@ -15,10 +15,24 @@
 #   ./todo.sh
 #
 
-egrep -Rn --binary-file=without-match \
-    --exclude-dir=.git . \
-    --exclude-dir=.npm \
-    --exclude-dir=node_modules \
+todo_toks="TODO|XXX|FIXME|WIP"
+animal_toks="OINK|MOO+|MEOW|HOOT|WOOF|BARK"
+
+# If we receive a parameter, search for that instead
+if [ $1 ]; then
+    animal_toks=""
+    todo_toks=$1
+fi
+
+egrep -Rn "$todo_toks|$animal_toks" \
+    --binary-file=without-match     \
+    --exclude-dir=.git              \
+    --exclude-dir=.npm              \
+    --exclude-dir=node_modules      \
+    --exclude="*.log"               \
+    --exclude="*.csv"               \
+    --color=always                  \
+    .                               \
     | awk -F':' '
     BEGIN {
         todo = 0;
