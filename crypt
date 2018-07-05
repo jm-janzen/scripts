@@ -1,0 +1,74 @@
+#!/bin/bash -e
+
+#
+# Summary
+#   crypt - easily {en,de}crypt the given dir/tarball
+#
+# Usage
+#   Encrypt dir (producing encrypted tarball)
+#       ./crypt oink/
+#   Decrypt tarball (producing decrypted dir)
+#       ./crypt oink.tar.gz.gpg
+#
+# Description
+#   After operating on file, will delete the given file
+#   , and any intermediary files (ie tarballs, dirs).
+#
+# NOTE
+#   This script requires, a gpg key associated with the present user
+#   , and an {e,uni}ncrypted tarball that you wish to operate on.
+#   See: https://statistics.berkeley.edu/computing/encrypt for further
+#   information.
+#
+#   This script only tested from / on files in $HOME.
+#
+
+FILE=$1
+
+if [ -z $FILE ]
+then
+    echo "Missing: Filename to operate on"
+    exit 1
+elif [[ ! -f $FILE && ! -d $FILE ]];
+then
+    echo "No such file or directory: $FILE"
+    exit 1
+fi
+
+ext=`echo "$FILE" | cut -d. -f2-`
+fname=`echo "$FILE" | cut -d. -f1`
+
+if [ $ext == 'tar.gz.gpg' ]
+then
+    echo "Decrypting $FILE ..." && sleep 5
+    new_tarball="$fname.tar.gz"
+    gpg -d -o "$new_tarball" "$FILE"
+
+    echo "Unpacking tarbar ..."
+    tar xzf "$new_tarball" --absolute-names && rm -Ifr "$new_tarball"
+
+    echo "Cleaning up ..."
+    rm -I "$FILE"
+
+elif [ -d "$FILE" ]
+then
+
+    echo "Packing tarball $FILE ..." && sleep 5
+    new_tarball="$FILE.tar.gz"
+    tar czf "$new_tarball" "$FILE" --absolute-names
+
+    echo "Encrypting $FILE ..." && sleep 5
+    gpg -e -r "$USER" "$new_tarball"
+
+    echo "Cleaning up ..."
+    rm -Irf "$FILE" "$new_tarball"
+
+
+else
+    echo "Unknown file extension: $ext"
+    exit 1
+fi
+
+echo "Done. :)"
+
+exit 0
