@@ -1,0 +1,26 @@
+#!/bin/bash
+
+wifi_status="$(nmcli radio wifi)"
+if [[ "${wifi_status}" =~ ^enabled$ ]]
+then
+    echo -n 'Disabling wifi ... '
+    cmd_return=$((nmcli radio wifi off) 2>&1)
+
+elif [[ "${wifi_status}" =~ ^disabled$ ]]
+then
+    echo -n 'Enabling wifi ... '
+    cmd_return=$((nmcli radio wifi on)  2>&1)
+else
+    echo "Unknown wifi status: '${wifi_status}' - exiting"
+    exit 1
+fi
+
+if [[ $? -gt 0 ]]
+then
+    echo 'failed!'
+    echo -e "Command returned:\n\t${cmd_return}"
+    exit 1
+else
+    echo 'done'
+fi
+
