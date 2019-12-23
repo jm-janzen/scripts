@@ -4,25 +4,38 @@
 # Summary
 #   todo.sh - scan files for signs of incomplete work
 #
+# Usage
+#   ./todo.sh [target]
+#
+# Examples
+#   Search file 'foo.txt':
+#       ./todo.sh foo.txt
+#
+#   Search dir 'bar':
+#       ./todo.sh bar
+#
 # Description
 #   Look for patterns which match `TODO', `XXX', or `WIP',
 #   and display snippets of the lines that contain these
 #   patterns.
+#
+#   If we receive an argument, use that as the target for the
+#   search rather than $PWD.
+#
 #   Once completed scanning all files, display summary (count)
 #   of each pattern.
 #
-# Usage
-#   ./todo.sh
 #
 
 todo_toks="TODO|XXX|FIXME|WIP"
 animal_toks="OINK|MOO+|MEOW|HOOT|WOOF|BARK"
 
-# If we receive a parameter, search for that instead
-if [ $1 ]; then
-    animal_toks=""
-    todo_toks=$1
+if [ -z $1 ]; then
+    SEARCH_TARGET='.'
+else
+    SEARCH_TARGET="${1}"
 fi
+echo $SEARCH_TARGET
 
 egrep -Rn "$todo_toks|$animal_toks" \
     --binary-file=without-match     \
@@ -32,7 +45,7 @@ egrep -Rn "$todo_toks|$animal_toks" \
     --exclude="*.log"               \
     --exclude="*.csv"               \
     --color=always                  \
-    .                               \
+    "${SEARCH_TARGET}"              \
     | awk -F':' '
     BEGIN {
         todo = 0;
